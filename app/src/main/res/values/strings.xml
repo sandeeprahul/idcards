@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">IdCards</string>
+    <string name="hint_test">Member Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="wofname">W/O Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="phone">Phone <font fgcolor='#FF0000'>*</font></string>
+    <string name="groupname">Group Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="groupid">Group ID <font fgcolor='#FF0000'>*</font></string>
+    <string name="name">Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="vo">VO Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="password">Password <font fgcolor='#FF0000'>*</font></string>
+    <string name="voname">VO Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="village">Village <font fgcolor='#FF0000'>*</font></string>
+    <string name="mandal">Mandal <font fgcolor='#FF0000'>*</font></string>
+    <string name="desig">Designation <font fgcolor='#FF0000'>*</font></string>
+    <string name="branch">Branch/Section <font fgcolor='#FF0000'>*</font></string>
+    <string name="stud">Student Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="parent">Parent Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="sofdofwof">S/O / W/O / D/O <font fgcolor='#FF0000'>*</font></string>
+    <string name="class_">Class <font fgcolor='#FF0000'>*</font></string>
+    <string name="section">Section <font fgcolor='#FF0000'>*</font></string>
+    <string name="instname">Institution Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="user_name">User Name <font fgcolor='#FF0000'>*</font></string>
+    <string name="no_of_cards_ex_100">Total SHG Members <font fgcolor='#FF0000'>*</font></string>
+
+</resources>
