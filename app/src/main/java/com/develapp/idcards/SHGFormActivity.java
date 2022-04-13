@@ -84,7 +84,7 @@ public class SHGFormActivity extends AppCompatActivity {
     LinearLayout desg_popup_ll, gallery_ll, capture_ll, mandals_popup_ll;
     RecyclerView mandals_rv, desig_rv, todays_rv;
     Bitmap bitmap;
-    String memMandalID;
+    String memMandalID,districtId;
     Spinner institution_spinner, relation_spinner, desg_spinner;
     AdapterTodayList adapterTodayList;
     public String filePath;
@@ -522,6 +522,7 @@ public class SHGFormActivity extends AppCompatActivity {
             jsonBody.put("designation", desg);
 //            jsonBody.put("ids_cnt",noof_cards_edt.getText().toString());
             jsonBody.put("mandal_id", memMandalID);
+            jsonBody.put("district", districtId);
             if (!notEdit) {
                 jsonBody.put("shg_id_update", dataImages_.get(0).id);
                 if (encodedString.equals("")) {
@@ -690,6 +691,7 @@ public class SHGFormActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response);
                     //mandal_tv.setText(jsonArray.getJSONObject(0).getString("mandal").toString());
                     memMandalID = jsonArray.getJSONObject(0).getString("mandal");
+                    districtId = jsonArray.getJSONObject(0).getString("district");
                     mandal_tv.setText(jsonArray.getJSONObject(0).getString("mandal_title"));
                     voname_edt.setText(jsonArray.getJSONObject(0).getString("vo_name"));
 //                    getMandals();

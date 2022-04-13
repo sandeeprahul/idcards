@@ -67,11 +67,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                     if(email_et_login.getText().toString().equals("")){
-                        showAlert("Please enter UserName");
+                        showAlert("Phone number must be 10 characters");
                     }
-                    else if (password_et_login.getText().toString().equals("")){
+                   /* else if (password_et_login.getText().toString().equals("")){
                         showAlert("Password length must be atlest 6 characters");
-                    }
+                    }*/
                     else {
                         callLoginService();
                     }
@@ -178,8 +178,8 @@ public class LoginActivity extends AppCompatActivity {
             public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 //headers.put("Content-Type", "application/json");
-                params.put("username",email_et_login.getText().toString());
-                params.put("password",password_et_login.getText().toString());
+                params.put("phone",email_et_login.getText().toString());
+//                params.put("password",password_et_login.getText().toString());
                 Log.e("paramsLogin",params.toString());
                 return params;
             }

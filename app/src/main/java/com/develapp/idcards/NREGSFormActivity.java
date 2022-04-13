@@ -80,7 +80,7 @@ public class NREGSFormActivity extends AppCompatActivity {
     RecyclerView mandals_rv, desig_rv;
     Bitmap bitmap;
     ArrayList<String> relationsArray = new ArrayList<String>();
-    String memMandalID;
+    String memMandalID,districtId;
 
     RecyclerView todays_rv;
     String bloodGroup;
@@ -695,9 +695,10 @@ public class NREGSFormActivity extends AppCompatActivity {
             jsonBody.put("parent_name", relation_edt.getText().toString());
             jsonBody.put("phone", phoneno_edt.getText().toString());
             jsonBody.put("group", group_edt.getText().toString());
-            jsonBody.put("category", "");
+            jsonBody.put("category", "test");
             jsonBody.put("village", village_edt.getText().toString());
             jsonBody.put("mandal",memMandalID);
+            jsonBody.put("district",districtId);
 //            jsonBody.put("address", ""+address_edt.getText().toString()+","+address_edt4.getText().toString()+","+address_edt5.getText().toString());
             jsonBody.put("ration_card_number", ration_card_no_edt.getText().toString());
             jsonBody.put("aadhar", aadhar_edt.getText().toString());
@@ -1050,6 +1051,7 @@ public class NREGSFormActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     memMandalID = jsonArray.getJSONObject(0).getString("mandal");
+                    districtId = jsonArray.getJSONObject(0).getString("district");
                     mandal_tv.setText(jsonArray.getJSONObject(0).getString("mandal_title"));
                 } catch (JSONException e) {
                     e.printStackTrace();

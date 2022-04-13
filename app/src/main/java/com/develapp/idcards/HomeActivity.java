@@ -152,7 +152,7 @@ public class HomeActivity extends AppCompatActivity {
         //slideViewpager(dataBanners.size());
         adapterBanners.notifyDataSetChanged();
         bannerslider_vp.setAdapter(adapterBanners);
-        usrname_tv.setText(Session.getUserEmail(HomeActivity.this));
+        usrname_tv.setText(Session.getUserPhone(HomeActivity.this));
         menu_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

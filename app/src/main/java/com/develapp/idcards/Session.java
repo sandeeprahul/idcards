@@ -27,10 +27,12 @@ public class Session {
 
     static String SESSION_ID="session_id";
 //    public static final String BASE_URL_ = "https://projects.yellowsoft.in/idcards/app/";
-    public static final String BASE_URL = "http://idcards.yellowsoft.in/app/";
+    public static final String BASE_URL = "http://idcards.yellowsoft.in/apps/";
     public static final String PDF_URL = "http://idcards.yellowsoft.in/";
     public static final String PDF_URL_ = "https://projects.yellowsoft.in/idcards/";
     //https://projects.yellowsoft.in/idcards/app/register
+    //http://idcards.yellowsoft.in/corecode/gen_pdf.php?id=21
+    //http://idcards.yellowsoft.in/app/
     static String DEVICE_ID="device_id";
     static String USER_ID="user_id";
     static String USER_mobile="user_mobile";
