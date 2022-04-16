@@ -42,10 +42,12 @@ public class IDListActivity extends AppCompatActivity {
     AdapterTodayList adapterTodayList;
     AdapterTodayListStudents adapterTodayListStudents;
     AdapterTodayListEmploye adapterTodayListEmploye;
+    AdapterTodayListNregs adapterTodayListNregs;
 //    AdapterTodayList adapterTodayList;
     ArrayList<DataImages> dataImages = new ArrayList<DataImages>();
     ArrayList<DataStudents> dataStudents = new ArrayList<DataStudents>();
     ArrayList<DataEmploye> dataEmployes = new ArrayList<DataEmploye>();
+    ArrayList<DataNregs> dataNregs = new ArrayList<DataNregs>();
 //    ArrayList<DataImages> dataImages = new ArrayList<DataImages>();
     LinearLayoutManager gl;
     int lastItem = 0;
@@ -76,8 +78,10 @@ public class IDListActivity extends AppCompatActivity {
             getAllDataList("student_ids");
         }
         else if (Session.getType(IDListActivity.this).equals("2")){
-//employee_ids
             getAllDataList("employee_ids");
+        }
+        else if (Session.getType(IDListActivity.this).equals("3")){
+            getAllDataList("nregs_ids");
         }
         else {
             no_data_tv.setVisibility(View.VISIBLE);
@@ -117,6 +121,10 @@ public class IDListActivity extends AppCompatActivity {
                         else if (Session.getType(IDListActivity.this).equals("2")){
 //employee_ids
                             getAllDataList("employee_ids");
+                        }
+                        else if (Session.getType(IDListActivity.this).equals("3")){
+//employee_ids
+                            getAllDataList("nregs_ids");
                         }
                     }
                 }
@@ -201,6 +209,21 @@ public class IDListActivity extends AppCompatActivity {
                             todays_rv.scrollToPosition(tem - visibleItemCount + 1);
                         }
                     }
+                    else if (Session.getType(IDListActivity.this).equals("3")){
+                        for (int i=0;i<jsonArray.length();i++){
+                            DataNregs temp = new DataNregs(jsonArray.getJSONObject(i));
+                            dataNregs.add(temp);
+                        }
+                        adapterTodayListNregs = new AdapterTodayListNregs(IDListActivity.this,dataNregs,1);
+                        todays_rv.setAdapter(adapterTodayListNregs);
+                        if (page == 0) {
+
+                            adapterTodayListNregs.notifyDataSetChanged();
+
+                        } else {
+                            todays_rv.scrollToPosition(tem - visibleItemCount + 1);
+                        }
+                    }
 
 
                    /* adapterTodayList = new AdapterTodayList(IDListActivity.this,dataImages,1);
@@ -263,6 +286,13 @@ public class IDListActivity extends AppCompatActivity {
     }
     public void editDetailsEmploye(final int pos,final DataEmploye data){
         Intent intent = new Intent(IDListActivity.this,Emp_temp.class);
+        intent.putExtra("data",data);
+        intent.putExtra("pos",""+pos);
+        startActivity(intent);
+        finish();
+    }
+    public void editDetailsNregs(final int pos,final DataNregs data){
+        Intent intent = new Intent(IDListActivity.this,NREGSFormActivity.class);
         intent.putExtra("data",data);
         intent.putExtra("pos",""+pos);
         startActivity(intent);

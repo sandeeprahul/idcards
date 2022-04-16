@@ -154,6 +154,10 @@ public class CreationActivity extends AppCompatActivity {
         }
         else if(Session.getType(CreationActivity.this).equals("3")){
             vo_edt.setVisibility(View.GONE);
+            classes_rl.setVisibility(View.GONE);
+            sections_rl.setVisibility(View.GONE);
+            inst_rl.setVisibility(View.GONE);
+            designations_rl.setVisibility(View.GONE);
 
         }
 

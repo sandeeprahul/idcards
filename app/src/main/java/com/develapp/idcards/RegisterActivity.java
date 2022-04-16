@@ -120,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmpass_edt = (EditText)findViewById(R.id.confirmpass_edt);
         submit_tv = (TextView) findViewById(R.id.submit_tv);
         back_img = (ImageView) findViewById(R.id.back_img);
-
+        confirmpass_edt.setVisibility(View.GONE);
         adapterMandals = new AdapterMandals(RegisterActivity.this,dataMandals,0);
         //initial check of shg
         if (sgh_rb.isChecked()){
@@ -250,7 +250,7 @@ public class RegisterActivity extends AppCompatActivity {
                    // Toast.makeText(RegisterActivity.this,"Please enter a Valid Email",Toast.LENGTH_SHORT).show();
                 }
 
-                else if (usrname_edt.getText().toString().equals("")){
+          /*      else if (usrname_edt.getText().toString().equals("")){
                     showAlert("Please enter User Name");
 
 //                    Toast.makeText(RegisterActivity.this,"Please enter UserName",Toast.LENGTH_SHORT).show();
@@ -259,7 +259,7 @@ public class RegisterActivity extends AppCompatActivity {
                     showAlert("Password length must be atlest 6 characters");
 
                    // Toast.makeText(RegisterActivity.this,"Password length must be atlest 6 characters",Toast.LENGTH_SHORT).show();
-                }
+                }*/
                 else {
                     if (shg){
                         if (mandalId.equals("")){

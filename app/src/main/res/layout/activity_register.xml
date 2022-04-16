@@ -209,7 +209,8 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="12dp"
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/password_edt"
@@ -225,7 +226,8 @@
                         android:paddingBottom="12dp"
 
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/confirmpass_edt"
@@ -240,7 +242,8 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="12dp"
                         android:singleLine="true"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/email_edt"

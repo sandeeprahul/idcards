@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getMemberDetails();
-    }
+    }//ids_cnt
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

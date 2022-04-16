@@ -71,16 +71,20 @@ public class NREGSFormActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 44;
     public String class_name;
     public String section;
-    EditText parent_name_edt, phoneno_edt, phone_edt, adminno_edt, address_edt,address_edt4,address_edt5, transport_edt, bloodgroup_edt;
-    EditText student_name_edt, idno_edt, dob_edt, aadhar_edt,relation_edt,ration_card_no_edt,bank_ac_no_edt,bank_name_edt,job_card_no_edt,group_edt,village_edt;
-    RelativeLayout class_rl, inst_name_rl, section_rl,mandal_rl;
-    TextView submit_tv, close_tv_mandals_popup, close_tv_popup, mandal_tv, title_tv_popup,relation_tv,class_edt,section_edt;
+    RelativeLayout category_rl;
+    TextView oc_tv, st_tv, sc_tv, bc_tv;
+    LinearLayout category_ll_popup;
+    EditText parent_name_edt, phoneno_edt, phone_edt, adminno_edt, address_edt, address_edt4, address_edt5, transport_edt, bloodgroup_edt;
+    EditText student_name_edt, idno_edt, dob_edt, aadhar_edt, relation_edt, ration_card_no_edt, bank_ac_no_edt, bank_name_edt, job_card_no_edt, group_edt, village_edt;
+    RelativeLayout class_rl, inst_name_rl, section_rl, mandal_rl;
+    TextView submit_tv, close_tv_mandals_popup, close_tv_popup, mandal_tv, title_tv_popup, relation_tv, class_edt, section_edt;
     TextView class_tv, nodata_tv, logout_tv, creation_tv, desg_tv, inst_name_tv, section_tv;
-    LinearLayout desg_popup_ll, gallery_ll, capture_ll, mandals_popup_ll, calender_popup,blood_grp_ll;
+    LinearLayout desg_popup_ll, gallery_ll, capture_ll, mandals_popup_ll, calender_popup, blood_grp_ll;
     RecyclerView mandals_rv, desig_rv;
+    TextView category_tv;
     Bitmap bitmap;
     ArrayList<String> relationsArray = new ArrayList<String>();
-    String memMandalID,districtId;
+    String memMandalID, districtId;
 
     RecyclerView todays_rv;
     String bloodGroup;
@@ -88,7 +92,7 @@ public class NREGSFormActivity extends AppCompatActivity {
     //    ArrayList<String> dataBldGrp = new ArrayList<String>();
     String[] dataBldGrp = {"O+", "O-", "A+", "A-",
             "B+", "B-", "AB+", "AB-"};
-    TextView o_p,o_n,a_n,a_p,b_p,b_n,ab_p,ab_n;
+    TextView o_p, o_n, a_n, a_p, b_p, b_n, ab_p, ab_n;
     DatePicker simpleDatePicker;
 
     ArrayList<String> details = new ArrayList<String>();
@@ -96,13 +100,13 @@ public class NREGSFormActivity extends AppCompatActivity {
     ImageView back_img;
     String inst_name = "", mandalId = "", relations = "S/O", desg = "";
     AdapterMandals adapterMandals;
-    AdapterTodayListStudents adapterTodayListStudents;
+    AdapterTodayListNregs adapterTodayListNregs;
     ArrayList<DataMandals> dataMandals = new ArrayList<DataMandals>();
     ImageView capture_img, gallery_img;
     ImageView usr_img;
     ArrayList<DataImages> dataImages_ = new ArrayList<DataImages>();
-    ArrayList<DataStudents> dataStudents = new ArrayList<DataStudents>();
-    ArrayList<DataStudents> dataStudents_ = new ArrayList<DataStudents>();
+    ArrayList<DataNregs> dataStudents = new ArrayList<DataNregs>();
+    ArrayList<DataNregs> dataStudents_ = new ArrayList<DataNregs>();
     ArrayList<String> relation = new ArrayList<String>();
     private Bitmap profile;
     private String ext;
@@ -112,6 +116,7 @@ public class NREGSFormActivity extends AppCompatActivity {
     boolean imgChanged;
     Spinner institution_spinner, relation_spinner, desg_spinner;
     ArrayAdapter<String> adapter;
+    String[] items = new String[]{"Select Category", "OC", "BC", "SC", "ST"};
 
     @Override
     public void onBackPressed() {
@@ -141,23 +146,29 @@ public class NREGSFormActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(NREGSFormActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
 
-        simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
+        category_ll_popup = (LinearLayout) findViewById(R.id.category_ll_popup);
         institution_spinner = (Spinner) findViewById(R.id.institution_spinner);
         section_edt = (TextView) findViewById(R.id.section_edt);
+        oc_tv = (TextView) findViewById(R.id.oc_tv);
+        sc_tv = (TextView) findViewById(R.id.sc_tv);
+        st_tv = (TextView) findViewById(R.id.st_tv);
+        bc_tv = (TextView) findViewById(R.id.bc_tv);
+        category_rl = (RelativeLayout) findViewById(R.id.category_rl);
         todays_rv = (RecyclerView) findViewById(R.id.todays_rv);
         group_edt = (EditText) findViewById(R.id.group_edt);
-        class_edt = (TextView) findViewById(R.id.class_edt);
+        category_tv = (TextView) findViewById(R.id.category_tv);
+//        class_edt = (TextView) findViewById(R.id.class_edt);
         aadhar_edt = (EditText) findViewById(R.id.aadhar_edt);
         bank_name_edt = (EditText) findViewById(R.id.bank_name_edt);
-        dob_edt = (EditText) findViewById(R.id.dob_edt);
+//        dob_edt = (EditText) findViewById(R.id.dob_edt);
         job_card_no_edt = (EditText) findViewById(R.id.job_card_no_edt);
         ration_card_no_edt = (EditText) findViewById(R.id.ration_card_no_edt);
-        idno_edt = (EditText) findViewById(R.id.idno_edt);
+//        idno_edt = (EditText) findViewById(R.id.idno_edt);
         bank_ac_no_edt = (EditText) findViewById(R.id.bank_ac_no_edt);
         relation_edt = (EditText) findViewById(R.id.relation_edt);
         village_edt = (EditText) findViewById(R.id.village_edt);
-        okCalender = (Button) findViewById(R.id.okCalender);
-        mandals_popup_ll = (LinearLayout)findViewById(R.id.mandals_popup_ll);
+//        okCalender = (Button) findViewById(R.id.okCalender);
+        mandals_popup_ll = (LinearLayout) findViewById(R.id.mandals_popup_ll);
 
         student_name_edt = (EditText) findViewById(R.id.student_name_edt);
         section_tv = (TextView) findViewById(R.id.section_tv);
@@ -205,19 +216,55 @@ public class NREGSFormActivity extends AppCompatActivity {
         submit_tv = (TextView) findViewById(R.id.submit_tv);
         capture_ll = (LinearLayout) findViewById(R.id.capture_ll);
         gallery_ll = (LinearLayout) findViewById(R.id.gallery_ll);
-        bloodgroup_lv = (ListView)findViewById(R.id.bloodgroup_lv);
-        relation_tv = (TextView)findViewById(R.id.relation_tv);
+        bloodgroup_lv = (ListView) findViewById(R.id.bloodgroup_lv);
+        relation_tv = (TextView) findViewById(R.id.relation_tv);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.item_bldgrp,R.id.textView, dataBldGrp);
-        bloodgroup_lv.setAdapter(adapter);
-        bloodgroup_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        category_rl.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View view) {
+                if (category_ll_popup.getVisibility() == View.VISIBLE) {
+                    category_ll_popup.setVisibility(View.GONE);
 
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = dataBldGrp[position];
-                bloodgroup_edt.setText(dataBldGrp[position]);
+                } else {
+                    category_ll_popup.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        st_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                category_tv.setText("ST");
+                category_ll_popup.setVisibility(View.GONE);
+
+            }
+        });
+        bc_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                category_tv.setText("BC");
+                category_ll_popup.setVisibility(View.GONE);
+
+            }
+        });
+        oc_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                category_tv.setText("OC");
+                category_ll_popup.setVisibility(View.GONE);
+
+            }
+        });
+        sc_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                category_tv.setText("SC");
+                category_ll_popup.setVisibility(View.GONE);
+
+            }
+        });
+        category_ll_popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
@@ -233,98 +280,8 @@ public class NREGSFormActivity extends AppCompatActivity {
                 mandals_popup_ll.setVisibility(View.VISIBLE);
             }
         });
-//        TextView o_p,o_n,a_n,a_p,b_p,b_n,ab_p,ab_n;
 
-        o_p.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "o_p";
-                bloodgroup_edt.setText("O+");
-            }
-        });
-        o_n.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "o_n";
-                bloodgroup_edt.setText("O-");
 
-            }
-        });
-        a_p.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "a_p";
-                bloodgroup_edt.setText("A+");
-
-            }
-        });
-        b_p.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "b_p";
-                bloodgroup_edt.setText("B+");
-
-            }
-        });
-        ab_p.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "ab_p";
-                bloodgroup_edt.setText("AB+");
-
-            }
-        });
-        a_n.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "a_n";
-                bloodgroup_edt.setText("A-");
-
-            }
-        });
-        b_n.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "b_n";
-                bloodgroup_edt.setText("B-");
-
-            }
-        });
-        ab_n.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.GONE);
-                bloodGroup = "ab_n";
-                bloodgroup_edt.setText("AB-");
-
-            }
-        });
-      /*  bloodgroup_edt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blood_grp_ll.setVisibility(View.VISIBLE);
-            }
-        });*/
-        institution_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("onItemSelected: ", "" + details.get(position) + "");
-                inst_name_tv.setText(details.get(position));
-                inst_name = details.get(position);
-                institution_spinner.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         getMemberDetails();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(NREGSFormActivity.this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -332,50 +289,8 @@ public class NREGSFormActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(NREGSFormActivity.this);
         linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
         todays_rv.setLayoutManager(linearLayoutManager1);
-       /* dob_edt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calender_popup.setVisibility(View.VISIBLE);
-            }
-        });*/
 
-        okCalender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calender_popup.setVisibility(View.GONE);
-                String day = "" + simpleDatePicker.getDayOfMonth();
-                String month = "" + (simpleDatePicker.getMonth() + 1);
-                String year = "" + simpleDatePicker.getYear();
-                dob_edt.setText(day + "-" + month + "-" + year);
-            }
-        });
-       /* inst_name_rl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDetailsInstitutions();
-//                institution_spinner.setVisibility(View.VISIBLE);
-//                institution_spinner.performClick();
-//                relation_spinner
-                title_tv_popup.setText("Select Instution");
-                mandals_popup_ll.setVisibility(View.VISIBLE);
-            }
-        });*/
-     /*   class_rl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                title_tv_popup.setText("Select Class");
-                mandals_popup_ll.setVisibility(View.VISIBLE);
-                getDetailsClasses();
-            }
-        });*/
-      /*  section_rl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDetailsSections();
-                title_tv_popup.setText("Select Section");
-                mandals_popup_ll.setVisibility(View.VISIBLE);
-            }
-        });*/
+
         capture_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -435,8 +350,7 @@ public class NREGSFormActivity extends AppCompatActivity {
                 else if (relation_edt.getText().toString().equals("")) {
                     showAlert("Please enter Parent Name");
 //                    Toast.makeText(SHGFormActivity.this,"Please Enter RelationName",Toast.LENGTH_SHORT).show();
-                }
-                else if (phoneno_edt.getText().toString().length() != 10) {
+                } else if (phoneno_edt.getText().toString().length() != 10) {
                     showAlert("Phone number must be 10 numbers");
 //                    Toast.makeText(SHGFormActivity.this,"Please Enter GroupID",Toast.LENGTH_SHORT).show();
                 } else if (aadhar_edt.getText().toString().equals("")) {
@@ -465,20 +379,20 @@ public class NREGSFormActivity extends AppCompatActivity {
 
 
         if (getIntent().hasExtra("data")) {
-            DataStudents temp = (DataStudents) getIntent().getSerializableExtra("data");
+            DataNregs temp = (DataNregs) getIntent().getSerializableExtra("data");
             dataStudents_.add(temp);
 
             edit(Integer.parseInt(getIntent().getStringExtra("pos")), temp);
         }
         getTodaysList();
 
-        mandal_rl.setOnClickListener(new View.OnClickListener() {
+       /* mandal_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getMandals();
                 mandals_popup_ll.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
 
     public void takePicture() {
@@ -505,7 +419,7 @@ public class NREGSFormActivity extends AppCompatActivity {
                 details.add(jsonObject.getJSONArray("relations").get(i).toString());
                 relationsArray.add(jsonObject.getJSONArray("relations").get(i).toString());
             }
-            adapter = new ArrayAdapter<String>(NREGSFormActivity.this, R.layout.item_bldgrp,R.id.textView, relationsArray);
+            adapter = new ArrayAdapter<String>(NREGSFormActivity.this, R.layout.item_bldgrp, R.id.textView, relationsArray);
 //            relation_spinner.setAdapter(adapter);
             AdapterRelations adapterRelations = new AdapterRelations(NREGSFormActivity.this, details, 12);
             adapterRelations.notifyDataSetChanged();
@@ -690,15 +604,21 @@ public class NREGSFormActivity extends AppCompatActivity {
             final JSONObject jsonBody = new JSONObject();
             jsonBody.put("user_id", Session.getUserid(NREGSFormActivity.this));//6154043824,school_id, pickup_address pickup_latitude pickup_longitude subscription_duration amount_paid
             // params.put("member_name", membername_edt.getText().toString());//271012306
-            jsonBody.put("name", student_name_edt.getText().toString());
-            jsonBody.put("rel_type",relations);
+            jsonBody.put("member_name", student_name_edt.getText().toString());
             jsonBody.put("parent_name", relation_edt.getText().toString());
+
+            jsonBody.put("rel_type", relations);
             jsonBody.put("phone", phoneno_edt.getText().toString());
-            jsonBody.put("group", group_edt.getText().toString());
-            jsonBody.put("category", "test");
-            jsonBody.put("village", village_edt.getText().toString());
-            jsonBody.put("mandal",memMandalID);
-            jsonBody.put("district",districtId);
+            jsonBody.put("group_name", group_edt.getText().toString());
+            if (category_tv.getText().toString().equals("Category")) {
+                jsonBody.put("category", "");
+            } else {
+                jsonBody.put("category", category_tv.getText().toString());
+
+            }
+            jsonBody.put("village_name", village_edt.getText().toString());
+            jsonBody.put("mandal_id", memMandalID);
+            jsonBody.put("district", districtId);
 //            jsonBody.put("address", ""+address_edt.getText().toString()+","+address_edt4.getText().toString()+","+address_edt5.getText().toString());
             jsonBody.put("ration_card_number", ration_card_no_edt.getText().toString());
             jsonBody.put("aadhar", aadhar_edt.getText().toString());
@@ -790,25 +710,26 @@ public class NREGSFormActivity extends AppCompatActivity {
 
     public void clearFields() {
         submit_tv.setText("Submit");
-        inst_name_tv.setText(R.string.instname);
-        class_edt.setText(R.string.class_);
+//        inst_name_tv.setText(R.string.instname);
+//        class_edt.setText(R.string.class_);
         phoneno_edt.getText().clear();
-//        relation_edt.getText().clear();
-//        relation_tv.setText("Relation Type");
-        section_edt.setText(R.string.section);
+        bank_name_edt.getText().clear();
+        bank_ac_no_edt.setText("Relation Type");
         student_name_edt.getText().clear();
-        bloodgroup_edt.getText().clear();
+        group_edt.getText().clear();
         relation_edt.getText().clear();
-        student_name_edt.setHint(R.string.stud);
+        village_edt.getText().clear();
         parent_name_edt.getText().clear();
-        adminno_edt.getText().clear();
-        address_edt.getText().clear();
-        address_edt4.getText().clear();
-        address_edt5.getText().clear();
-        transport_edt.getText().clear();
+        category_tv.setText("Select Category");
+        ration_card_no_edt.getText().clear();
+        bank_ac_no_edt.getText().clear();
+        job_card_no_edt.getText().clear();
+//        address_edt4.getText().clear();
+//        address_edt5.getText().clear();
+//        transport_edt.getText().clear();
         aadhar_edt.getText().clear();
-        idno_edt.getText().clear();
-        dob_edt.getText().clear();
+//        idno_edt.getText().clear();
+//        dob_edt.getText().clear();
         // desg_tv.setText(getResources().getString(R.string.desig));
         usr_img.setVisibility(View.GONE);
         capture_ll.setVisibility(View.VISIBLE);
@@ -871,12 +792,12 @@ public class NREGSFormActivity extends AppCompatActivity {
                     }
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        DataStudents temp = new DataStudents(jsonArray.getJSONObject(i));
+                        DataNregs temp = new DataNregs(jsonArray.getJSONObject(i));
                         dataStudents.add(temp);
                     }
-                    adapterTodayListStudents = new AdapterTodayListStudents(NREGSFormActivity.this, dataStudents, 0);
-                    adapterTodayListStudents.notifyDataSetChanged();
-                    todays_rv.setAdapter(adapterTodayListStudents);
+                    adapterTodayListNregs = new AdapterTodayListNregs(NREGSFormActivity.this, dataStudents, 0);
+                    adapterTodayListNregs.notifyDataSetChanged();
+                    todays_rv.setAdapter(adapterTodayListNregs);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -915,25 +836,28 @@ public class NREGSFormActivity extends AppCompatActivity {
     }
 
 
-    public void edit(final int pos, final DataStudents data) {
+    public void edit(final int pos, final DataNregs data) {
         Log.e("edit: ", "true");
         //  capture_img.setVisibility(View.GONE);
         //   gallery_img.setVisibility(View.GONE);
         notEdit = false;
-        student_name_edt.setText(data.student_name);
-//        inst_name_tv.setText(data.inst_name);
+        student_name_edt.setText(data.member_name);
         phoneno_edt.setText(data.phone);
 //        class_edt.setText(data.class_);
 //        section_edt.setText(data.section);
-        parent_name_edt.setText(data.parent_name);
-        group_edt.setText(data.admin_number);
-        address_edt.setText(data.address);
-        transport_edt.setText(data.transport);
-        bloodgroup_edt.setText(data.blood_group);
+        relation_edt.setText(data.parent_name);
+        group_edt.setText(data.group_name);
+        village_edt.setText(data.village_name);
+        category_tv.setText(data.category);
 
-        idno_edt.setText(data.id_number);
 //        dob_edt.setText(data.dob);
         aadhar_edt.setText(data.aadhar);
+        ration_card_no_edt.setText(data.ration_card_number);
+        bank_ac_no_edt.setText(data.bank_acc_number);
+        bank_name_edt.setText(data.bank_name);
+        job_card_no_edt.setText(data.job_card_number);
+        relation_tv.setText(data.rel_type);
+
         usr_img.setVisibility(View.VISIBLE);
         Picasso.get().load(data.image).into(usr_img);
 
@@ -965,7 +889,7 @@ public class NREGSFormActivity extends AppCompatActivity {
             for (int i = 0; i < jsonObject.getJSONArray("inst_names").length(); i++) {
                 details.add(jsonObject.getJSONArray("inst_names").get(i).toString());
             }
-            adapter = new ArrayAdapter<String>(NREGSFormActivity.this, R.layout.item_bldgrp,R.id.textView, details);
+            adapter = new ArrayAdapter<String>(NREGSFormActivity.this, R.layout.item_bldgrp, R.id.textView, details);
             institution_spinner.setAdapter(adapter);
             AdapterRelations adapterRelations = new AdapterRelations(NREGSFormActivity.this, details, 2);
             adapterRelations.notifyDataSetChanged();
@@ -1173,7 +1097,7 @@ public class NREGSFormActivity extends AppCompatActivity {
         progressDialog.setMessage("Please Wait....");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        String Url = Session.BASE_URL + "student_delete";
+        String Url = Session.BASE_URL + "nregs_delete";
         Log.e("url1", Url);
 
 

@@ -220,6 +220,7 @@
                     <RelativeLayout
 
                         android:id="@+id/category_rl"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
@@ -237,6 +238,8 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:hint="Category"
+                            android:text="Select Category"
+                            android:textColor="@color/ef_grey"
                             android:textSize="17sp" />
 
                         <ImageView
@@ -249,24 +252,18 @@
                             android:layout_marginRight="5dp"
                             app:srcCompat="@drawable/downarrow_icon" />
 
-                        <Spinner
-                            android:id="@+id/institution_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:spinnerMode="dropdown"
-                            android:visibility="gone"
-                            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
                     </RelativeLayout>
+
 
                     <EditText
                         android:id="@+id/group_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
 
+                        android:layout_marginBottom="5dp"
                         android:background="@drawable/grey_rounded_corners_popup"
                         android:hint="Group"
                         android:paddingLeft="10dp"
@@ -610,39 +607,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/calender_popup"
+        android:id="@+id/category_ll_popup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#80000000"
-        android:clickable="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <DatePicker
-            android:id="@+id/simpleDatePicker"
-            android:layout_width="325dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/colorWhite" />
-
-        <Button
-            android:id="@+id/okCalender"
-            android:layout_width="325dp"
-            android:layout_height="wrap_content"
-
-            android:background="@color/colorBlue"
-            android:text="Ok"
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/blood_grp_ll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80000000"
-        android:clickable="true"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
@@ -650,156 +618,61 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@color/colorWhite"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Select Blood Group"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <ListView
-                android:id="@+id/bloodgroup_lv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
+            android:background="@drawable/grey_rounded_corners_home"
             android:orientation="vertical"
-            android:padding="15dp"
-            android:visibility="gone">
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/o_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:gravity="center"
-                android:text="O+"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
+                android:paddingBottom="10dp"
+                android:text="Select Category"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/o_n"
+                android:id="@+id/oc_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="O-"
+                android:text="OC"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/a_p"
+                android:id="@+id/bc_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="A+"
+                android:text="BC"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/a_n"
+                android:id="@+id/sc_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="A-"
+                android:text="SC"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/b_p"
+                android:id="@+id/st_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:text="B+"
+                android:text="ST"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
-
-            <TextView
-                android:id="@+id/b_n"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:gravity="center"
-                android:text="B-"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
-
-            <TextView
-                android:id="@+id/ab_p"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:gravity="center"
-                android:text="AB+"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/ef_grey"
-                android:orientation="vertical"></LinearLayout>
-
-            <TextView
-                android:id="@+id/ab_n"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:gravity="center"
-                android:text="AB-"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>
