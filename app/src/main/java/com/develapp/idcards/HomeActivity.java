@@ -572,7 +572,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void  getMemberDetails() {
         String Url = Session.BASE_URL + "members/"+Session.getUserid(HomeActivity.this);
-        Log.e("url1",Url);
+        Log.e("MemberDetaiurl1",Url);
         StringRequest jsonObjectRequest = new StringRequest(Request.Method.GET, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -582,9 +582,14 @@ public class HomeActivity extends AppCompatActivity {
                     JSONArray jsonArrar = new JSONArray(response.toString());
                     JSONObject jsonObject = jsonArrar.getJSONObject(0);
                     String s = Session.getNoofIds(HomeActivity.this);
-                    pass_tv.setText(jsonObject.getString("password"));
-//                    if(Session.getType(HomeActivity.this).equals("0")){
-                        rem_cards_tv.setText(jsonObject.getString("ids_completed")+"/"+jsonObject.getString("ids_cnt"));//ids_completed
+//                    pass_tv.setText(jsonObject.getString("password"));
+                    rem_cards_tv.setText(jsonObject.getString("ids_completed")+"/"+jsonObject.getString("ids_cnt"));//ids_completed
+
+//                    if(Session.getType(HomeActivity.this).equals("3")){
+//                        rem_cards_tv.setText(jsonObject.getString("ids_cnt"));//ids_completed
+//                    }else {
+//                        rem_cards_tv.setText(jsonObject.getString("ids_completed")+"/"+jsonObject.getString("ids_cnt"));//ids_completed
+//
 //                    }
                 }
                 catch (JSONException e){
