@@ -43,7 +43,7 @@ public class AdapterTodayListNregs extends RecyclerView.Adapter<AdapterTodayList
 
 		holder.id_tv_item.setText(items.get(position).id);
 		holder.name_tv_item.setText(items.get(position).member_name);
-		holder.rationcard_tv.setText(items.get(position).ration_card_number);
+		holder.rationcard_tv.setText(items.get(position).job_card_number);
 		holder.group_tv_item.setText(items.get(position).group_name);
 		holder.phone_item.setText(items.get(position).phone);
 		/*holder.name_tv_item.setMovementMethod(new ScrollingMovementMethod());
