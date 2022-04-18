@@ -903,7 +903,7 @@ public class StudentFormActivity extends AppCompatActivity {
         phoneno_edt.setText(data.phone);
         class_edt.setText(data.class_);
         section_edt.setText(data.section);
-        parent_name_edt.setText(data.parent_name);
+        relation_edt.setText(data.parent_name);
         adminno_edt.setText(data.admin_number);
         address_edt.setText(data.address);
         transport_edt.setText(data.transport);
