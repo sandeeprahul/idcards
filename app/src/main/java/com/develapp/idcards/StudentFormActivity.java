@@ -679,6 +679,7 @@ public class StudentFormActivity extends AppCompatActivity {
             jsonBody.put("phone", phoneno_edt.getText().toString());
             jsonBody.put("admin_number", adminno_edt.getText().toString());
             jsonBody.put("address", ""+address_edt.getText().toString()+","+address_edt4.getText().toString()+","+address_edt5.getText().toString());
+
             jsonBody.put("transport", transport_edt.getText().toString());
             jsonBody.put("blood_group", bloodGroup);
             jsonBody.put("id_number", idno_edt.getText().toString());
@@ -916,6 +917,9 @@ public class StudentFormActivity extends AppCompatActivity {
         Picasso.get().load(data.image).into(usr_img);
 
         inst_name = data.inst_name;
+
+        String[] address1 = data.address.split(",");
+        Log.e("address1",""+address1.length);
 
         // desg = data.designation;
         // desg_tv.setText(data.designation);

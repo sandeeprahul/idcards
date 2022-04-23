@@ -46,7 +46,7 @@ public class AdapterTodayListStudents extends RecyclerView.Adapter<AdapterTodayL
 		holder.parent_name_item.setText(items.get(position).parent_name);
 		holder.class_item.setText(items.get(position).class_);
 		holder.phone_item.setText(items.get(position).phone);
-		holder.inst_item.setText(items.get(position).inst_name);
+		holder.inst_item.setText(items.get(position).id_number);
 		holder.relation_name_tv_item.setText(items.get(position).rel_type);
 		/*holder.name_tv_item.setMovementMethod(new ScrollingMovementMethod());
 		holder.vo_name_item.setMovementMethod(new ScrollingMovementMethod());

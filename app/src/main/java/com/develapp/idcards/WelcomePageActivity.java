@@ -19,6 +19,13 @@ public class WelcomePageActivity extends AppCompatActivity {
         super.onStart();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
     LinearLayout create_ll,login_ll;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override

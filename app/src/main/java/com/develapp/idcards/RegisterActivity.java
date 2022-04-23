@@ -511,8 +511,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
 
                 params.put("name", name_edt.getText().toString());//6154043824,school_id, pickup_address pickup_latitude pickup_longitude subscription_duration amount_paid
-                params.put("username", usrname_edt.getText().toString());//271012306
-                params.put("password", password_edt.getText().toString());
+//                params.put("username", usrname_edt.getText().toString());//271012306
+//                params.put("password", password_edt.getText().toString());
                 params.put("phone", phone_edt.getText().toString());
                 params.put("email", email_edt.getText().toString());
                 params.put("whatsapp", wspnumber_edt.getText().toString());
